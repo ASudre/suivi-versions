@@ -1,0 +1,36 @@
+<header class="hero-unit" id="banner">
+  <div class="container">
+    <h1>Release notes Fortuneo</h1>
+  </div>
+</header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="col-lg-12" id="new-version">
+        Add new version :
+        <form>
+          <label for="date">Date</label>
+          <input id="date" name="date" type="date" ng-model="$ctrl.newVersion.date" />
+          <label for="stories">Stories</label>
+          <input id="stories" name="stories" type="text" ng-model="$ctrl.newVersion.stories" />
+        </form>
+        <input type="submit" ng-click="$ctrl.addVersion()" >
+      </div>
+      <h2 class="page-header">Versions:</h2>
+      <div>
+        <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="version in $ctrl.versions">
+          <li>
+            <a href="#" uib-tooltip="{{version._id}}">{{version.number}} - {{version.date | date:'yyyy-MM-dd'}}</a>
+            Stories :
+            <ul class="nav" ng-repeat="story in version.stories">
+              <li>
+                <a href="#" uib-tooltip="{{story}}">{{story}}</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
