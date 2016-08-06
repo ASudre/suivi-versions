@@ -3,9 +3,12 @@
 import mongoose from 'mongoose';
 
 var VersionSchema = new mongoose.Schema({
-  number: Number,
   date: Date,
-  stories: Array
+  stories: [{
+    key: String,
+    url: String
+  }],
+  updated: { type: Date, default: Date.now }
 });
 
 export default mongoose.model('Version', VersionSchema);

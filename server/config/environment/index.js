@@ -39,6 +39,10 @@ var all = {
         safe: true
       }
     }
+  },
+
+  jira: {
+    storiesUrl: process.env.JIRA_STORIES_URL || 'https://extranet.arkea.com/jira/browse/'
   }
 };
 

@@ -7389,11 +7389,21 @@ button.close {
   color: #000;
   padding: 0.2em 0; }
 
-#new-version {
-  margin-top: 1em; }
-
-input {
-  height: 2em; }
+.releases .title {
+  font-size: 1.5em;
+  margin-bottom: 0; }
+.releases .version {
+  padding-top: 1em; }
+.releases #versions {
+  padding-left: 0; }
+.releases #new-version {
+  padding-left: 0; }
+  .releases #new-version form div {
+    margin-bottom: 0.5em; }
+    .releases #new-version form div input {
+      width: 11em; }
+  .releases #new-version form input {
+    height: 2em; }
 
 /* inject:scss */
 .thing-form {

@@ -11,6 +11,7 @@
 
 import _ from 'lodash';
 import Versions from './version.model';
+let versionService = require('./version.service');
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -61,7 +62,7 @@ function handleError(res, statusCode) {
 
 // Gets a list of versions
 export function index(req, res) {
-  return Versions.find().exec()
+  return versionService.getAllByDate()
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
@@ -76,7 +77,7 @@ export function show(req, res) {
 
 // Creates a new Versions in the DB
 export function create(req, res) {
-  return Versions.create(req.body)
+  return versionService.saveVersion(req.body)
     .then(respondWithResult(res, 201))
     .catch(handleError(res));
 }
