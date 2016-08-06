@@ -7,21 +7,22 @@
     constructor($http) {
       this.$http = $http;
       this.versions = [];
-      this.newVersion = {
-        date: new Date(),
-        stories: ''
-      };
+      this.newVersion = {};
     }
 
     $onInit() {
-      this.getVersions();
+      this.refreshVersions();
     }
 
-    getVersions() {
-      this.$http.get('/api/versions')
-        .then(response => {
-          this.versions = response.data;
-        });
+    refreshVersions() {
+      return this.$http.get('/api/versions')
+      .then(response => {
+        this.versions = response.data;
+        this.newVersion = {
+          date: new Date(),
+          stories: ''
+        };
+      });
     }
 
     addVersion() {
@@ -29,7 +30,7 @@
         this.newVersion.stories = this.newVersion.stories.split(/[\s,]+/);
         this.$http.post('/api/versions', this.newVersion)
         .then(() => {
-          this.getVersions();
+          this.refreshVersions();
         });
       }
     }
