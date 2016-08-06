@@ -22,10 +22,10 @@ describe('Component: mainComponent', function() {
     });
   }));
 
-  it('should attach a list of versions to the controller', function() {
+  it('should initialize newVersion in the controller', function() {
     mainComponent.$onInit();
     $httpBackend.flush();
-    expect(mainComponent.version.length)
-      .to.equal(4);
+    expect(mainComponent.newVersion.stories)
+      .to.equal('');
   });
 });

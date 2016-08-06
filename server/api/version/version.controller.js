@@ -22,16 +22,6 @@ function respondWithResult(res, statusCode) {
   };
 }
 
-function saveUpdates(updates) {
-  return function(entity) {
-    var updated = _.merge(entity, updates);
-    return updated.save()
-      .then(updated => {
-        return updated;
-      });
-  };
-}
-
 function removeEntity(res) {
   return function(entity) {
     if (entity) {
@@ -89,7 +79,7 @@ export function update(req, res) {
   }
   return Versions.findById(req.params.id).exec()
     .then(handleEntityNotFound(res))
-    .then(saveUpdates(req.body))
+    .then(versionService.updateVersion(req.body))
     .then(respondWithResult(res))
     .catch(handleError(res));
 }

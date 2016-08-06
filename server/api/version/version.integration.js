@@ -2,8 +2,10 @@
 
 var app = require('../..');
 import request from 'supertest';
+import config from '../../config/environment'
 
-var newVersion;
+let newVersion;
+const now = new Date();
 
 describe('Versions API:', function() {
 
@@ -35,8 +37,11 @@ describe('Versions API:', function() {
       request(app)
         .post('/api/versions')
         .send({
-          name: 'New Versions',
-          info: 'This is the brand new version!!!'
+          date: now,
+          stories: [
+            'FTOREPROBO-460',
+            'FTOREPROBO-461'
+          ]
         })
         .expect(201)
         .expect('Content-Type', /json/)
@@ -50,8 +55,10 @@ describe('Versions API:', function() {
     });
 
     it('should respond with the newly created version', function() {
-      expect(newVersion.name).to.equal('New Versions');
-      expect(newVersion.info).to.equal('This is the brand new version!!!');
+      expect(new Date(newVersion.date).toTimeString()).to.equal(now.toTimeString());
+      expect(newVersion.stories.length).to.equal(2);
+      expect(newVersion.stories[0].key).to.equal('FTOREPROBO-460');
+      expect(newVersion.stories[0].url).to.equal(config.jira.storiesUrl + 'FTOREPROBO-460');
     });
 
   });
@@ -78,21 +85,26 @@ describe('Versions API:', function() {
     });
 
     it('should respond with the requested version', function() {
-      expect(version.name).to.equal('New Versions');
-      expect(version.info).to.equal('This is the brand new version!!!');
+      expect(new Date(version.date).toTimeString()).to.equal(now.toTimeString());
+      expect(version.stories.length).to.equal(2);
+      expect(version.stories[0].key).to.equal('FTOREPROBO-460');
+      expect(version.stories[0].url).to.equal(config.jira.storiesUrl + 'FTOREPROBO-460');
     });
 
   });
 
   describe('PUT /api/versions/:id', function() {
-    var updatedThing;
+    var updatedVersion;
+    const updatedNow = new Date();
 
     beforeEach(function(done) {
       request(app)
         .put('/api/versions/' + newVersion._id)
         .send({
-          name: 'Updated Versions',
-          info: 'This is the updated version!!!'
+          date: updatedNow,
+          stories: [
+            'FTOREPROBO-462'
+          ]
         })
         .expect(200)
         .expect('Content-Type', /json/)
@@ -100,18 +112,20 @@ describe('Versions API:', function() {
           if (err) {
             return done(err);
           }
-          updatedThing = res.body;
+          updatedVersion = res.body;
           done();
         });
     });
 
     afterEach(function() {
-      updatedThing = {};
+      updatedVersion = {};
     });
 
     it('should respond with the updated version', function() {
-      expect(updatedThing.name).to.equal('Updated Versions');
-      expect(updatedThing.info).to.equal('This is the updated version!!!');
+      expect(new Date(updatedVersion.date).toTimeString()).to.equal(updatedNow.toTimeString());
+      expect(updatedVersion.stories.length).to.equal(1);
+      expect(updatedVersion.stories[0].key).to.equal('FTOREPROBO-462');
+      expect(updatedVersion.stories[0].url).to.equal(config.jira.storiesUrl + 'FTOREPROBO-462');
     });
 
   });
