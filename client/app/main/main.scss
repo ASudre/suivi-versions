@@ -2,6 +2,45 @@
   margin: 20px 0;
 }
 
+#remove {
+  cursor: pointer;
+}
+
+.version {
+  border-top: 1px solid;
+
+  .infos {
+    width: 100%;
+
+    .date {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
+
+#versions {
+  padding-left: 0px;
+}
+
+#new-version {
+  padding-left: 0;
+  padding-bottom: 20px;
+  form {
+    div {
+      margin-bottom: 0.5em;
+
+      input {
+        width: 11em;
+      }
+    }
+
+    input {
+      height: 2em;
+    }
+  }
+}
+
 #banner {
   border-bottom: none;
   margin-top: -20px;

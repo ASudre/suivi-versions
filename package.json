@@ -106,6 +106,7 @@
   },
   "scripts": {
     "test": "gulp test",
+    "serve": "gulp serve",
     "update-webdriver": "node node_modules/protractor/bin/webdriver-manager update",
     "start": "node server"
   },

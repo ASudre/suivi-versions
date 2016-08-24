@@ -38,6 +38,14 @@
     deleteVersion(version) {
       this.$http.delete('/api/versions/' + version._id);
     }
+
+    remove(versionId) {
+      this.$http.delete('/api/versions/' + versionId)
+      .then(() => {
+        this.refreshVersions();
+      });
+    }
+
   }
 
   angular.module('suiviVersionsApp')

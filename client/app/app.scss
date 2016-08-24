@@ -21,31 +21,6 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
     margin-bottom: 0;
   }
 
-  .version {
-    padding-top: 1em;
-  }
-
-  #versions {
-    padding-left: 0;
-  }
-
-  #new-version {
-    padding-left: 0;
-
-    form {
-      div {
-        margin-bottom: 0.5em;
-
-        input {
-          width: 11em;
-        }
-      }
-
-      input {
-        height: 2em;
-      }
-    }
-  }
 }
 
 // Component styles are injected through grunt

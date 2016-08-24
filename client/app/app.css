@@ -7392,22 +7392,41 @@ button.close {
 .releases .title {
   font-size: 1.5em;
   margin-bottom: 0; }
-.releases .version {
-  padding-top: 1em; }
-.releases #versions {
-  padding-left: 0; }
-.releases #new-version {
-  padding-left: 0; }
-  .releases #new-version form div {
-    margin-bottom: 0.5em; }
-    .releases #new-version form div input {
-      width: 11em; }
-  .releases #new-version form input {
-    height: 2em; }
 
 /* inject:scss */
 .thing-form {
   margin: 20px 0; }
+
+#remove {
+  /*background: repeating-linear-gradient(
+      45deg,
+      #606dbc,
+      #606dbc 10px,
+      #465298 10px,
+      #465298 20px
+  );*/
+  cursor: pointer; }
+
+.version {
+  border-top: 1px solid; }
+  .version .infos {
+    width: 100%; }
+    .version .infos .date {
+      display: flex;
+      justify-content: space-between; }
+
+#versions {
+  padding-left: 0px; }
+
+#new-version {
+  padding-left: 0;
+  padding-bottom: 20px; }
+  #new-version form div {
+    margin-bottom: 0.5em; }
+    #new-version form div input {
+      width: 11em; }
+  #new-version form input {
+    height: 2em; }
 
 #banner {
   border-bottom: none;

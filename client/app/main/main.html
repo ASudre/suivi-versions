@@ -7,7 +7,7 @@
       <div class="col-lg-12">
         <div class="col-lg-3" id="new-version">
           <p class="title">New version:</p>
-          <div class="version">
+          <div>
             <form>
               <div>
                 <label for="date">Date</label>
@@ -23,17 +23,19 @@
         </div>
         <div class="col-lg-9" id="versions">
           <p class="title">Versions:</p>
-          <div class="nav nav-tabs version" ng-repeat="version in $ctrl.versions">
-            <div>Date :
-              {{version.date | date:'dd/MM/yyyy'}}
-            </div>
-            <div>
-              Stories :
-              <ul class="nav" ng-repeat="story in version.stories">
-                <li>
-                  <a href="{{story.url}}" uib-tooltip="{{story.key}}" target="_blank">{{story.key}}</a>
-                </li>
-              </ul>
+          <div class="version" ng-repeat="version in $ctrl.versions">
+            <div class="infos">
+              <div class="date">
+                <div>Date: {{version.date | date:'dd/MM/yyyy'}}</div>
+                <div ng-click="$ctrl.remove(version._id)" id="remove">X</div>
+              </div>
+              <div>
+                <ul class="nav" ng-repeat="story in version.stories">
+                  <li>
+                    <a href="{{story.url}}" uib-tooltip="{{story.key}}" target="_blank">{{story.key}}</a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
